@@ -1,0 +1,636 @@
+{
+  "description": "A New Flow",
+  "states": [
+    {
+      "name": "Trigger",
+      "type": "trigger",
+      "transitions": [
+        {
+          "event": "incomingMessage"
+        },
+        {
+          "next": "gather_1",
+          "event": "incomingCall"
+        },
+        {
+          "event": "incomingRequest"
+        }
+      ],
+      "properties": {
+        "offset": {
+          "x": 0,
+          "y": 10
+        }
+      }
+    },
+    {
+      "name": "gather_1",
+      "type": "gather-input-on-call",
+      "transitions": [
+        {
+          "next": "split_1",
+          "event": "keypress"
+        },
+        {
+          "event": "speech"
+        },
+        {
+          "event": "timeout"
+        }
+      ],
+      "properties": {
+        "speech_timeout": "auto",
+        "offset": {
+          "x": 190,
+          "y": 170
+        },
+        "loop": 1,
+        "finish_on_key": "#",
+        "say": "HELLO, Thanks for contacting MLH, Our mission is to Empower Hackers. We are glad that you are here. \nPress 1 if you have any Questions and Feedback.\nPress 2 if you want to Report a Code of Conduct Violation.\nPress 3 If you want to Appeal a Code of Conduct Decision.\nPress 4 if you want to interact with the MLH representative. \nPress 5 if you want to know more about hackathons.\nPress 7 to repeat this menu.\npress 9 to call a customer executive.",
+        "stop_gather": true,
+        "gather_language": "en",
+        "profanity_filter": "true",
+        "timeout": 5
+      }
+    },
+    {
+      "name": "split_1",
+      "type": "split-based-on",
+      "transitions": [
+        {
+          "next": "say_play_10",
+          "event": "noMatch"
+        },
+        {
+          "next": "say_play_3",
+          "event": "match",
+          "conditions": [
+            {
+              "friendly_name": "1",
+              "arguments": [
+                "{{widgets.gather_1.Digits}}"
+              ],
+              "type": "equal_to",
+              "value": "1"
+            }
+          ]
+        },
+        {
+          "next": "say_play_4",
+          "event": "match",
+          "conditions": [
+            {
+              "friendly_name": "If value equal_to 2",
+              "arguments": [
+                "{{widgets.gather_1.Digits}}"
+              ],
+              "type": "equal_to",
+              "value": "2"
+            }
+          ]
+        },
+        {
+          "next": "say_play_5",
+          "event": "match",
+          "conditions": [
+            {
+              "friendly_name": "If value equal_to 3",
+              "arguments": [
+                "{{widgets.gather_1.Digits}}"
+              ],
+              "type": "equal_to",
+              "value": "3"
+            }
+          ]
+        },
+        {
+          "next": "say_play_6",
+          "event": "match",
+          "conditions": [
+            {
+              "friendly_name": "If value equal_to 4",
+              "arguments": [
+                "{{widgets.gather_1.Digits}}"
+              ],
+              "type": "equal_to",
+              "value": "4"
+            }
+          ]
+        },
+        {
+          "next": "say_play_7",
+          "event": "match",
+          "conditions": [
+            {
+              "friendly_name": "If value equal_to 5",
+              "arguments": [
+                "{{widgets.gather_1.Digits}}"
+              ],
+              "type": "equal_to",
+              "value": "5"
+            }
+          ]
+        },
+        {
+          "event": "match",
+          "conditions": [
+            {
+              "friendly_name": "If value equal_to 6",
+              "arguments": [
+                "{{widgets.gather_1.Digits}}"
+              ],
+              "type": "equal_to",
+              "value": "6"
+            }
+          ]
+        },
+        {
+          "next": "say_play_8",
+          "event": "match",
+          "conditions": [
+            {
+              "friendly_name": "If value equal_to 7",
+              "arguments": [
+                "{{widgets.gather_1.Digits}}"
+              ],
+              "type": "equal_to",
+              "value": "7"
+            }
+          ]
+        },
+        {
+          "next": "say_play_9",
+          "event": "match",
+          "conditions": [
+            {
+              "friendly_name": "If value equal_to 9",
+              "arguments": [
+                "{{widgets.gather_1.Digits}}"
+              ],
+              "type": "equal_to",
+              "value": "9"
+            }
+          ]
+        }
+      ],
+      "properties": {
+        "input": "{{widgets.gather_1.Digits}}",
+        "offset": {
+          "x": -170,
+          "y": 470
+        }
+      }
+    },
+    {
+      "name": "say_play_3",
+      "type": "say-play",
+      "transitions": [
+        {
+          "next": "gather_2",
+          "event": "audioComplete"
+        }
+      ],
+      "properties": {
+        "offset": {
+          "x": -310,
+          "y": 760
+        },
+        "loop": 1,
+        "say": "We're always excited to talk with hackers, organizers, and companies about the hackathon movement and MLH. Have questions about participating in hackathons, organizing hackathons or sponsoring them? Have feedback for MLH? Drop us a line at hi@mlh.io.\nIf you want to record a feedback Press 1 and you are ready to go. We definately appreciate that."
+      }
+    },
+    {
+      "name": "gather_2",
+      "type": "gather-input-on-call",
+      "transitions": [
+        {
+          "next": "split_4",
+          "event": "keypress"
+        },
+        {
+          "event": "speech"
+        },
+        {
+          "next": "say_play_17",
+          "event": "timeout"
+        }
+      ],
+      "properties": {
+        "offset": {
+          "x": -270,
+          "y": 990
+        },
+        "loop": 1,
+        "finish_on_key": "#",
+        "stop_gather": true,
+        "timeout": 5
+      }
+    },
+    {
+      "name": "split_4",
+      "type": "split-based-on",
+      "transitions": [
+        {
+          "event": "noMatch"
+        },
+        {
+          "next": "say_play_15",
+          "event": "match",
+          "conditions": [
+            {
+              "friendly_name": "If value equal_to 1",
+              "arguments": [
+                "{{widgets.gather_1.Digits}}"
+              ],
+              "type": "equal_to",
+              "value": "1"
+            }
+          ]
+        },
+        {
+          "event": "match",
+          "conditions": [
+            {
+              "friendly_name": "If value equal_to 2",
+              "arguments": [
+                "{{widgets.gather_1.Digits}}"
+              ],
+              "type": "equal_to",
+              "value": "2"
+            }
+          ]
+        }
+      ],
+      "properties": {
+        "input": "{{widgets.gather_1.Digits}}",
+        "offset": {
+          "x": -550,
+          "y": 1290
+        }
+      }
+    },
+    {
+      "name": "record_voicemail_1",
+      "type": "record-voicemail",
+      "transitions": [
+        {
+          "next": "say_play_16",
+          "event": "recordingComplete"
+        },
+        {
+          "event": "noAudio"
+        },
+        {
+          "event": "hangup"
+        }
+      ],
+      "properties": {
+        "transcribe": false,
+        "offset": {
+          "x": -330,
+          "y": 1580
+        },
+        "trim": "trim-silence",
+        "play_beep": "true",
+        "timeout": 5,
+        "max_length": 3600
+      }
+    },
+    {
+      "name": "say_play_4",
+      "type": "say-play",
+      "transitions": [
+        {
+          "next": "gather_2",
+          "event": "audioComplete"
+        }
+      ],
+      "properties": {
+        "offset": {
+          "x": 30,
+          "y": 750
+        },
+        "loop": 1,
+        "say": "MLH takes the Code of Conduct seriously, harassment and abuse are never tolerated at MLH Member events. If for any reason you feel uncomfortable at an event, don't hesitate to get in contact, using here or through any of the methods found in the Code of Conduct or shoot an email at incident@mlh.io. \nOr if you want to record press 1, Our representative will contact you next."
+      }
+    },
+    {
+      "name": "say_play_5",
+      "type": "say-play",
+      "transitions": [
+        {
+          "next": "gather_2",
+          "event": "audioComplete"
+        }
+      ],
+      "properties": {
+        "offset": {
+          "x": 330,
+          "y": 760
+        },
+        "loop": 1,
+        "say": "MLH may from time to time take disciplinary actions to ensure MLH Member events are as safe and welcoming as possible. Disciplinary action may be appealed by the recepient per the MLH Disciplinary Action Policy, or email us at incident@mlh.io.\nYou can also record your appeal by pressing 1."
+      }
+    },
+    {
+      "name": "say_play_6",
+      "type": "say-play",
+      "transitions": [
+        {
+          "next": "gather_4",
+          "event": "audioComplete"
+        }
+      ],
+      "properties": {
+        "offset": {
+          "x": 660,
+          "y": 880
+        },
+        "loop": 1,
+        "say": "MLH representative are generally full time student and if you want to interact with one of the MLHer you have to wait for atleast 2 weeks after emailing at hi@mlh.io or open a ticket in our discord channel."
+      }
+    },
+    {
+      "name": "say_play_7",
+      "type": "say-play",
+      "transitions": [
+        {
+          "next": "gather_4",
+          "event": "audioComplete"
+        }
+      ],
+      "properties": {
+        "offset": {
+          "x": 1000,
+          "y": 880
+        },
+        "loop": 1,
+        "say": "Find, compete, and earn points at the largest, most diverse hacker events in the world. You can find each and every event hosting this season at https://mlh.io/seasons/2022/events."
+      }
+    },
+    {
+      "name": "say_play_8",
+      "type": "say-play",
+      "transitions": [
+        {
+          "next": "gather_1",
+          "event": "audioComplete"
+        }
+      ],
+      "properties": {
+        "offset": {
+          "x": 1180,
+          "y": 350
+        },
+        "loop": 1,
+        "say": "Sure, Repeating the menu."
+      }
+    },
+    {
+      "name": "say_play_9",
+      "type": "say-play",
+      "transitions": [
+        {
+          "next": "connect_call_1",
+          "event": "audioComplete"
+        }
+      ],
+      "properties": {
+        "offset": {
+          "x": 1440,
+          "y": 1000
+        },
+        "loop": 1,
+        "say": "Hey there, Please wait while we are connecting you to one of our representative."
+      }
+    },
+    {
+      "name": "connect_call_1",
+      "type": "connect-call-to",
+      "transitions": [
+        {
+          "next": "say_play_11",
+          "event": "callCompleted"
+        },
+        {
+          "next": "say_play_12",
+          "event": "hangup"
+        }
+      ],
+      "properties": {
+        "offset": {
+          "x": 1470,
+          "y": 1220
+        },
+        "caller_id": "{{contact.channel.address}}",
+        "noun": "number",
+        "to": "+911234567890",
+        "timeout": 30
+      }
+    },
+    {
+      "name": "say_play_10",
+      "type": "say-play",
+      "transitions": [
+        {
+          "next": "gather_1",
+          "event": "audioComplete"
+        }
+      ],
+      "properties": {
+        "offset": {
+          "x": -440,
+          "y": 290
+        },
+        "loop": 1,
+        "say": "Sorry, We received no response, Please try again!"
+      }
+    },
+    {
+      "name": "say_play_11",
+      "type": "say-play",
+      "transitions": [
+        {
+          "event": "audioComplete"
+        }
+      ],
+      "properties": {
+        "offset": {
+          "x": 1300,
+          "y": 1460
+        },
+        "loop": 1,
+        "say": "Thanks for contacting MLH have a great time."
+      }
+    },
+    {
+      "name": "say_play_12",
+      "type": "say-play",
+      "transitions": [
+        {
+          "event": "audioComplete"
+        }
+      ],
+      "properties": {
+        "offset": {
+          "x": 1620,
+          "y": 1450
+        },
+        "loop": 1,
+        "say": "Sorry, our customer service executive are currently busy, Please try after sometime. Thank YOU."
+      }
+    },
+    {
+      "name": "gather_4",
+      "type": "gather-input-on-call",
+      "transitions": [
+        {
+          "next": "split_7",
+          "event": "keypress"
+        },
+        {
+          "event": "speech"
+        },
+        {
+          "next": "say_play_13",
+          "event": "timeout"
+        }
+      ],
+      "properties": {
+        "speech_timeout": "auto",
+        "offset": {
+          "x": 840,
+          "y": 1150
+        },
+        "loop": 1,
+        "finish_on_key": "#",
+        "say": "Press 1 if you want to return to the main menu or, Press 2.",
+        "stop_gather": true,
+        "gather_language": "en",
+        "profanity_filter": "true",
+        "timeout": 5
+      }
+    },
+    {
+      "name": "split_7",
+      "type": "split-based-on",
+      "transitions": [
+        {
+          "next": "say_play_13",
+          "event": "noMatch"
+        },
+        {
+          "next": "gather_1",
+          "event": "match",
+          "conditions": [
+            {
+              "friendly_name": "If value equal_to 1",
+              "arguments": [
+                "{{widgets.gather_1.Digits}}"
+              ],
+              "type": "equal_to",
+              "value": "1"
+            }
+          ]
+        },
+        {
+          "next": "gather_1",
+          "event": "match",
+          "conditions": [
+            {
+              "friendly_name": "If value equal_to 2",
+              "arguments": [
+                "{{widgets.gather_1.Digits}}"
+              ],
+              "type": "equal_to",
+              "value": "2"
+            }
+          ]
+        }
+      ],
+      "properties": {
+        "input": "{{widgets.gather_1.Digits}}",
+        "offset": {
+          "x": 560,
+          "y": 1390
+        }
+      }
+    },
+    {
+      "name": "say_play_13",
+      "type": "say-play",
+      "transitions": [
+        {
+          "next": "gather_4",
+          "event": "audioComplete"
+        }
+      ],
+      "properties": {
+        "offset": {
+          "x": 170,
+          "y": 1300
+        },
+        "loop": 1,
+        "say": "Sorry, we received no response, lets try again."
+      }
+    },
+    {
+      "name": "say_play_15",
+      "type": "say-play",
+      "transitions": [
+        {
+          "next": "record_voicemail_1",
+          "event": "audioComplete"
+        }
+      ],
+      "properties": {
+        "offset": {
+          "x": 170,
+          "y": 1590
+        },
+        "loop": 1,
+        "say": "You can start your recording after the beep."
+      }
+    },
+    {
+      "name": "say_play_16",
+      "type": "say-play",
+      "transitions": [
+        {
+          "next": "gather_1",
+          "event": "audioComplete"
+        }
+      ],
+      "properties": {
+        "offset": {
+          "x": -370,
+          "y": 1840
+        },
+        "loop": 1,
+        "say": "Thanks for your voice mail. We are redirecting you to the main menu."
+      }
+    },
+    {
+      "name": "say_play_17",
+      "type": "say-play",
+      "transitions": [
+        {
+          "next": "gather_1",
+          "event": "audioComplete"
+        }
+      ],
+      "properties": {
+        "offset": {
+          "x": -780,
+          "y": 880
+        },
+        "loop": 1,
+        "say": "Redirecting to the main menu."
+      }
+    }
+  ],
+  "initial_state": "Trigger",
+  "flags": {
+    "allow_concurrent_calls": true
+  }
+}
